@@ -291,3 +291,186 @@
     font-size: 18px;
     color: #cccccc;  /* Light gray, visible on dark background */
 }
+
+
+
+
+
+
+/* Social Icons Row - Horizontal Icons */
+.social-icons-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.social-icon-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-size: 20px;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.social-icon-circle:hover {
+    transform: translateY(-5px);
+}
+
+.social-icon-circle.facebook:hover {
+    background: #1877f2;
+    color: white;
+}
+
+.social-icon-circle.instagram:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+}
+
+.social-icon-circle.telegram:hover {
+    background: #0088cc;
+    color: white;
+}
+
+.social-icon-circle.youtube:hover {
+    background: #ff0000;
+    color: white;
+}
+
+.social-icon-circle.tiktok:hover {
+    background: #000000;
+    color: #00f2ea;
+    box-shadow: 0 0 10px rgba(0, 242, 234, 0.5);
+}
+
+/* Ensure all contact cards are equal height */
+.contact-card {
+    background: var(--light-gray);
+    padding: 40px 25px;
+    text-align: center;
+    border-radius: 15px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    min-height: 320px;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(243, 156, 18, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    flex-shrink: 0;
+}
+
+.contact-icon i {
+    font-size: 30px;
+    color: var(--primary);
+}
+
+.contact-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.contact-card p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.contact-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    margin-top: auto;
+}
+
+.contact-link:hover {
+    gap: 12px;
+}
+
+/* Share Card Styles */
+.share-card {
+    cursor: pointer;
+}
+
+.share-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+.share-feedback {
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.share-feedback.success {
+    color: #2ecc71;
+}
+
+.share-feedback.error {
+    color: #e74c3c;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .contact-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-card {
+        min-height: auto;
+    }
+    
+    .social-icons-row {
+        gap: 12px;
+    }
+    
+    .social-icon-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
