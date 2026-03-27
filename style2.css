@@ -4,6 +4,17 @@
     box-sizing: border-box;
 }
 
+
+
+/* CSS */
+.coach-image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+
+
 :root {
     --primary: #f39c12;
     --primary-dark: #e67e22;
