@@ -107,3 +107,91 @@ navLinkItems.forEach(link => {
 document.addEventListener('DOMContentLoaded', () => {
     animateOnScroll();
 });
+
+
+
+// Certificate Load More Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const showLessBtn = document.getElementById('showLessBtn');
+    const hiddenCerts = document.querySelectorAll('.hidden-cert');
+    
+    // Variables to track state
+    let currentVisibleCount = 4; // First 4 certificates are visible
+    const batchSize = 4; // Show 4 certificates at a time
+    const totalCerts = hiddenCerts.length + 4; // Total 16 certificates
+    
+    // Function to update button visibility
+    function updateButtons() {
+        const visibleCerts = document.querySelectorAll('.certificate-card:not(.hidden-cert)').length;
+        
+        if (visibleCerts >= totalCerts) {
+            // All certificates are visible
+            loadMoreBtn.classList.add('hidden');
+            showLessBtn.classList.remove('hidden');
+        } else if (visibleCerts > 4) {
+            // Some extra certificates are visible, not all
+            loadMoreBtn.classList.remove('hidden');
+            showLessBtn.classList.remove('hidden');
+        } else {
+            // Only first 4 are visible
+            loadMoreBtn.classList.remove('hidden');
+            showLessBtn.classList.add('hidden');
+        }
+    }
+    
+    // Function to show next batch of certificates
+    function loadMore() {
+        let visibleCount = document.querySelectorAll('.certificate-card:not(.hidden-cert)').length;
+        let nextBatch = [];
+        
+        // Find the next hidden certificates to show
+        for (let i = 0; i < hiddenCerts.length; i++) {
+            if (hiddenCerts[i].classList.contains('hidden-cert')) {
+                nextBatch.push(hiddenCerts[i]);
+                if (nextBatch.length === batchSize) break;
+            }
+        }
+        
+        // Show the next batch
+        nextBatch.forEach(cert => {
+            cert.classList.remove('hidden-cert');
+        });
+        
+        // Update buttons
+        updateButtons();
+    }
+    
+    // Function to retract/hide all extra certificates (keep only first 4)
+    function showLess() {
+        // Hide all certificates beyond the first 4
+        const allCerts = document.querySelectorAll('.certificate-card');
+        
+        for (let i = 4; i < allCerts.length; i++) {
+            if (!allCerts[i].classList.contains('hidden-cert')) {
+                allCerts[i].classList.add('hidden-cert');
+            }
+        }
+        
+        // Reset button states
+        loadMoreBtn.classList.remove('hidden');
+        showLessBtn.classList.add('hidden');
+        
+        // Smooth scroll back to certificates section
+        const certificatesSection = document.querySelector('.coaches');
+        certificatesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Add event listeners
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', loadMore);
+    }
+    
+    if (showLessBtn) {
+        showLessBtn.addEventListener('click', showLess);
+    }
+    
+    // Initialize button states
+    updateButtons();
+});
+
